@@ -5,17 +5,17 @@ import androidx.room.*
 @Dao
 interface HistoryDao {
     @Query("SELECT * FROM historyTable")
-     fun getAllHistoryItems(): List<HistoryItem>
+    suspend fun getAllHistoryItems(): List<HistoryItem>
 
     @Insert
-     fun insertHistoryItem(historyItem: HistoryItem)
+    suspend fun insertHistoryItem(historyItem: HistoryItem)
 
     @Delete
-     fun deleteHistoryItem(historyItem: HistoryItem)
+    suspend fun deleteHistoryItem(historyItem: HistoryItem)
 
     @Update
-     fun updateHistoryItem(historyItem: HistoryItem)
+    suspend fun updateHistoryItem(historyItem: HistoryItem)
 
     @Query("DELETE FROM historyTable")
-     fun deleteAllHistoryItems()
+    suspend fun deleteAllHistoryItems()
 }

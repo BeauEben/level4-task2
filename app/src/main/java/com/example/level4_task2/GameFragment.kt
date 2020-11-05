@@ -48,7 +48,7 @@ class GameFragment : Fragment(){
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setHasOptionsMenu(true)
         viewInit()
     }
 
@@ -60,11 +60,11 @@ class GameFragment : Fragment(){
         }
 
         ivPaper.setOnClickListener{
-            //playerMove(1)
+            playerMove(1)
         }
 
         ivScissors.setOnClickListener{
-            //playerMove(2)
+            playerMove(2)
         }
 
         tvStatistics.text = getString(R.string.statistics, win, draw, lose)
@@ -156,16 +156,43 @@ class GameFragment : Fragment(){
             if (cpu == 0){
                 win += 1
                 Toast.makeText(activity, "you won", Toast.LENGTH_SHORT).show()
+
+                pMove = R.drawable.paper
+                cMove = R.drawable.rock
+                outcome = "You won!"
+                itemDate = formatted
+
+                historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
+
+                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 1){
                 draw += 1
                 Toast.makeText(activity, "its a draw", Toast.LENGTH_SHORT).show()
+
+                pMove = R.drawable.paper
+                cMove = R.drawable.paper
+                outcome = "Draw"
+                itemDate = formatted
+
+                historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
+
+                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 2){
                 lose += 1
                 Toast.makeText(activity, "you lost", Toast.LENGTH_SHORT).show()
+
+                pMove = R.drawable.paper
+                cMove = R.drawable.scissors
+                outcome = "Computer wins!"
+                itemDate = formatted
+
+                historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
+
+                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
         }
 
@@ -173,19 +200,53 @@ class GameFragment : Fragment(){
             if (cpu == 0){
                 lose += 1
                 Toast.makeText(activity, "you lost", Toast.LENGTH_SHORT).show()
+
+                pMove = R.drawable.scissors
+                cMove = R.drawable.rock
+                outcome = "Computer wins!"
+                itemDate = formatted
+
+                historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
+
+                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 1){
                 win += 1
                 Toast.makeText(activity, "you won", Toast.LENGTH_SHORT).show()
+
+                pMove = R.drawable.scissors
+                cMove = R.drawable.paper
+                outcome = "You won!"
+                itemDate = formatted
+
+                historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
+
+                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 2){
                 draw += 1
                 Toast.makeText(activity, "its a draw", Toast.LENGTH_SHORT).show()
+
+                pMove = R.drawable.scissors
+                cMove = R.drawable.scissors
+                outcome = "Draw"
+                itemDate = formatted
+
+                historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
+
+                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
         }
 
         tvStatistics.text = getString(R.string.statistics, win, draw, lose)
+    }
+
+    @SuppressLint("ResourceType")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.findItem(R.id.action_history).isVisible = true
+        menu.findItem(R.id.action_delete_all).isVisible = false
     }
 }

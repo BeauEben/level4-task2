@@ -11,23 +11,23 @@ public class HistoryItemRepository (context: Context) {
         historyDao = historyItemDatabase!!.historyItemDao()
     }
 
-    fun getAllHistoryItems(): List<HistoryItem>{
+    suspend fun getAllHistoryItems(): List<HistoryItem>{
         return historyDao.getAllHistoryItems()
     }
 
-    fun insertHistoryItem(historyItem: HistoryItem){
+    suspend fun insertHistoryItem(historyItem: HistoryItem){
         historyDao.insertHistoryItem(historyItem)
     }
 
-    fun deleteHistoryItem(historyItem: HistoryItem){
+    suspend fun deleteHistoryItem(historyItem: HistoryItem){
         historyDao.deleteHistoryItem(historyItem)
     }
 
-    fun updateHistoryItem(historyItem: HistoryItem){
+    suspend fun updateHistoryItem(historyItem: HistoryItem){
         historyDao.updateHistoryItem(historyItem)
     }
 
-    fun deleteAllHistoryItems(){
+    suspend fun deleteAllHistoryItems(){
         historyDao.deleteAllHistoryItems()
     }
 

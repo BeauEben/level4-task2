@@ -20,7 +20,6 @@ abstract class HistoryItemDatabase : RoomDatabase() {
                 synchronized(HistoryItemDatabase::class.java){
                     if (historyItemRoomDatabaseInstance == null){
                         historyItemRoomDatabaseInstance = Room.databaseBuilder(context.applicationContext, HistoryItemDatabase::class.java, DATABASE_NAME)
-                                .allowMainThreadQueries()
                                 .build()
                     }
                 }

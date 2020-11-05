@@ -12,11 +12,12 @@
         android:theme="@style/Theme.Level4task2.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/tbMain"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Level4task2.PopupOverlay" />
+            app:popupTheme="@style/Theme.Level4task2.PopupOverlay"
+            app:title="test" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
