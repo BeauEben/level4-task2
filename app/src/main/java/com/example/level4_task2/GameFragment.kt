@@ -94,7 +94,6 @@ class GameFragment : Fragment(){
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("StringFormatMatches")
     private fun calculateWinner(player: Int, cpu: Int){
         var outcome: String
         var cMove: Int
@@ -106,144 +105,120 @@ class GameFragment : Fragment(){
         val formatted = currentTime.format(formatter)
 
 
-        var historyItem : HistoryItem
+        itemDate = formatted
+
+        var historyItem : HistoryItem? = null
 
         if (player == 0){
             if (cpu == 0){
                 draw += 1
-                Toast.makeText(activity, "its a draw", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyDraw), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.rock
                 cMove = R.drawable.rock
-                outcome = "Draw"
-                itemDate = formatted
+                outcome = getString(R.string.historyDraw)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 1){
                 lose += 1
-                Toast.makeText(activity, "you lost", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyLose), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.rock
                 cMove = R.drawable.paper
-                outcome = "Computer wins!"
-                itemDate = formatted
+                outcome = getString(R.string.historyLose)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 2){
                 win += 1
-                Toast.makeText(activity, "you won", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyWin), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.rock
                 cMove = R.drawable.scissors
-                outcome = "You won!"
-                itemDate = formatted
+                outcome = getString(R.string.historyWin)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
         }
 
         if (player == 1){
             if (cpu == 0){
                 win += 1
-                Toast.makeText(activity, "you won", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyWin), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.paper
                 cMove = R.drawable.rock
-                outcome = "You won!"
-                itemDate = formatted
+                outcome = getString(R.string.historyWin)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 1){
                 draw += 1
-                Toast.makeText(activity, "its a draw", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyDraw), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.paper
                 cMove = R.drawable.paper
-                outcome = "Draw"
-                itemDate = formatted
+                outcome = getString(R.string.historyDraw)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 2){
                 lose += 1
-                Toast.makeText(activity, "you lost", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyLose), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.paper
                 cMove = R.drawable.scissors
-                outcome = "Computer wins!"
-                itemDate = formatted
+                outcome = getString(R.string.historyLose)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
         }
 
         if (player == 2){
             if (cpu == 0){
                 lose += 1
-                Toast.makeText(activity, "you lost", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyLose), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.scissors
                 cMove = R.drawable.rock
-                outcome = "Computer wins!"
-                itemDate = formatted
+                outcome = getString(R.string.historyLose)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 1){
                 win += 1
-                Toast.makeText(activity, "you won", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyWin), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.scissors
                 cMove = R.drawable.paper
-                outcome = "You won!"
-                itemDate = formatted
+                outcome = getString(R.string.historyWin)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
 
             if (cpu == 2){
                 draw += 1
-                Toast.makeText(activity, "its a draw", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.historyDraw), Toast.LENGTH_SHORT).show()
 
                 pMove = R.drawable.scissors
                 cMove = R.drawable.scissors
-                outcome = "Draw"
-                itemDate = formatted
+                outcome = getString(R.string.historyDraw)
 
                 historyItem = HistoryItem(outcome, cMove, pMove, itemDate)
-
-                setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
             }
         }
+
+        setFragmentResult(REQ_HISTORY_KEY, bundleOf(Pair(BUNDLE_HISTORY_KEY, historyItem)))
 
         tvStatistics.text = getString(R.string.statistics, win, draw, lose)
     }
 
-    @SuppressLint("ResourceType")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu.findItem(R.id.action_history).isVisible = true
