@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameFragment">
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInstructions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/instructions"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstructions" />
+
+    <TextView
+        android:id="@+id/tvStatistics"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/statistics"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstructions_title" />
+
+    <TextView
+        android:id="@+id/tvInstructions_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/statistics_title"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <ImageView
+        android:id="@+id/ivRock"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/purple_500"
+        android:src="@drawable/rock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPaper"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/purple_500"
+        android:src="@drawable/paper"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivScissors"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toEndOf="@+id/ivRock" />
+
+    <ImageView
+        android:id="@+id/ivScissors"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/purple_500"
+        android:src="@drawable/scissors"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVS"
+        android:layout_width="103dp"
+        android:layout_height="81dp"
+        android:fontFamily="cursive"
+        android:text="@string/vs"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/ivPaper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStatistics" />
+
+    <ImageView
+        android:id="@+id/ivCPURoll"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@color/purple_700"
+        android:src="@drawable/paper"
+        app:layout_constraintBottom_toTopOf="@+id/ivRock"
+        app:layout_constraintEnd_toStartOf="@+id/tvVS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStatistics" />
+
+    <ImageView
+        android:id="@+id/ivPlayerRoll"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@color/purple_700"
+        android:src="@drawable/scissors"
+        app:layout_constraintBottom_toTopOf="@+id/ivScissors"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvVS"
+        app:layout_constraintTop_toBottomOf="@+id/tvStatistics" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/computer"
+        app:layout_constraintEnd_toEndOf="@+id/ivCPURoll"
+        app:layout_constraintStart_toStartOf="@+id/ivCPURoll"
+        app:layout_constraintTop_toBottomOf="@+id/ivCPURoll" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you"
+        app:layout_constraintEnd_toEndOf="@+id/ivPlayerRoll"
+        app:layout_constraintStart_toStartOf="@+id/ivPlayerRoll"
+        app:layout_constraintTop_toBottomOf="@+id/ivPlayerRoll" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
