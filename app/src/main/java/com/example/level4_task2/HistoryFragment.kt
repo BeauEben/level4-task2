@@ -19,6 +19,8 @@ import kotlinx.android.synthetic.main.fragment_history.*
  */
 class HistoryFragment : Fragment() {
 
+    private lateinit var historyItemRepository: HistoryItemRepository
+
     private val historyItems = arrayListOf<HistoryItem>()
     private val historyItemAdapter = HistoryItemAdapter(historyItems)
 
@@ -34,20 +36,29 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         initViews()
+        observeAddHistoryResult()
+
+        historyItemRepository = HistoryItemRepository(requireContext())
+        getHistoryItemsFromDatabase()
     }
 
     private fun initViews(){
         rvHistory.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         rvHistory.adapter = historyItemAdapter
         rvHistory.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+    }
 
-        observeAddHistoryResult()
+    private fun getHistoryItemsFromDatabase(){
+        val historyItems = historyItemRepository.getAllHistoryItems()
+        this@HistoryFragment.historyItems.clear()
+        this@HistoryFragment.historyItems.addAll(historyItems)
+        historyItemAdapter.notifyDataSetChanged()
     }
 
     private fun observeAddHistoryResult(){
         setFragmentResultListener(REQ_HISTORY_KEY) { _, bundle -> bundle.getParcelable<HistoryItem>(BUNDLE_HISTORY_KEY)?.let {
-                historyItems.add(it)
-                historyItemAdapter.notifyDataSetChanged()
+                historyItemRepository.insertHistoryItem(it)
+                getHistoryItemsFromDatabase()
             }
         }
     }
